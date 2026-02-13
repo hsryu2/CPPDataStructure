@@ -26,5 +26,8 @@
     <ClInclude Include="LinkedList\Node.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedList\LinkedList.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
