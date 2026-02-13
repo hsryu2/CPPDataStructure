@@ -17,14 +17,14 @@ int main()
 
 
 	//loop-Iterator.
-	std::cout << "Iterator based loop \n";
-	for (
-		List<int>::Iterator it = list.begin();
-		it != list.end();
-		++it)
-	{
-		std::cout << *it << "\n";
-	}
+	//std::cout << "Iterator based loop \n";
+	//for (
+	//	List<int>::Iterator it = list.begin();
+	//	it != list.end();
+	//	++it)
+	//{
+	//	std::cout << *it << "\n";
+	//}
 
 	std::cin.get();
 }

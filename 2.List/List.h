@@ -157,7 +157,8 @@ public:
 	T& operator[](int index)
 	{
 		// index 범위 확인.
-		assert(index < 0 || index >= size);
+		//assert(index < 0 || index >= size);
+		assert(index >= 0 && index < size);
 		return data[index];
 	}
 
