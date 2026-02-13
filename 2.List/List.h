@@ -1,11 +1,109 @@
 #pragma once
 #include <iostream>
 #include <cassert>
+
+// 반복자
+template<typename List>
+class ListIterator
+{
+public:
+	// 타입 알리아싱 지정.
+	// List가 템플릿 파라미터로 넘어오는 경우 typename 까지 지정.
+	using ValueType = typename List::ValueType;
+	using PointerType = ValueType*;
+	using ReferenceType = ValueType&;
+public:
+	ListIterator(PointerType ptr)
+		:ptr(ptr)
+	{
+	}
+
+	// 연산자 오버로딩.
+	// 전위 증가 연산자.
+	ListIterator& operator++()
+	{
+		++ptr;
+		return *this;
+	}
+
+	// 후위 증가 연산자
+	ListIterator& operator++(int)
+	{
+		// 현재 반복자를 임시 저장.
+		ListIterator iterator = *this;
+
+		// 내부 포인터 ++ 처리.
+		++(*this);
+
+		// 앞서 저장했던 반복자 반환.
+		return iterator;
+	}
+
+	// 전위 감소 연산자.
+	ListIterator& operator--()
+	{
+		--ptr;
+		return *this;
+	}
+
+	// 후위 감소 연산자
+	ListIterator& operator--(int)
+	{
+		// 현재 반복자를 임시 저장.
+		ListIterator iterator = *this;
+
+		// 내부 포인터 -- 처리.
+		--(*this);
+
+		// 앞서 저장했던 반복자 반환.
+		return iterator;
+	}
+
+	ReferenceType operator[](int index)
+	{
+		return *(ptr + index);
+	}
+
+	PointerType operator->()
+	{
+		return ptr;
+	}
+
+	ReferenceType operator*()
+	{
+		return *ptr;
+	}
+
+	// 비교 연산자 오버로딩.
+	bool operator==(const ListIterator& other) const
+	{
+		return ptr == other.ptr;
+	}
+
+	bool operator!=(const ListIterator& other) const
+	{
+		return ptr != other.ptr;
+		// return !(*this == other);
+	}
+
+private:
+	PointerType ptr = nullptr;
+
+
+};
+
+
+
 // 자동으로 크기가 늘어나는 배열 (List/Vector).
 template<typename T>
 class List
 {
 public:
+
+	// 타입 알리아싱 지정.
+	using ValueType = T;
+	using Iterator = ListIterator<List<T>>;
+
 	List()
 	{
 		// Todo: 저장 공간 할당 해야함.
@@ -67,6 +165,23 @@ public:
 	int Size() const { return size; }
 	int Capacity() const { return capacity; }
 
+	// 범위 기반 루프 처리를 위한 함수 작성 (begin/end).
+	// 배열의 첫 위치를 반환하는 함수.
+	//Iterator begin()
+	T* begin()
+	{
+		return Iterator(data);
+	}
+	
+	// 배열에 저장된 마지막 요소의 다음 위치를 반환하는 함수.
+	//Iterator end()
+	T* end()
+	{
+		//return Iterator(data + size);
+		return data + size;
+	}
+
+
 private:
 	// 저장 공간 할당(재할당)하는 함수.
 	void Reallocate(int newCapacity)
@@ -86,8 +201,11 @@ private:
 		//	newBlock[i] = data[i];
 		//}
 		// 메모리 복사. 위와같은 방법으로 해도 되긴함.
-		memcpy(newBlock, data, sizeof(T) * capacity);
-
+		if (data)
+		{
+			memcpy(newBlock, data, sizeof(T) * capacity);
+		}
+		
 		
 		// 3. 기존 배열 공간 해제.
 		delete[] data;
