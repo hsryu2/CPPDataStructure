@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+
 // FIFO 형태로 동작하는 큐 클래스.
 template<typename T, int capacity = 10>
 class Queue
@@ -94,3 +95,4 @@ private:
 	T data[capacity + 1] = { };
 
 };
+
