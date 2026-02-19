@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c5433425-a63c-4181-9af8-b5f581fa2742}</ProjectGuid>
+    <ProjectGuid>{ea0fc48e-3aa8-4176-93eb-75c44e09a469}</ProjectGuid>
     <RootNamespace>My1Array</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

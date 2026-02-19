@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{12e0a19e-32a8-4b11-b730-8e379984581b}</ProjectGuid>
-    <RootNamespace>My3LinkedList</RootNamespace>
+    <ProjectGuid>{a92c9f73-e1f5-4cef-a8b7-424aca667fdd}</ProjectGuid>
+    <RootNamespace>My4DoublyLinkedList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
