@@ -1,5 +1,7 @@
 #pragma once
 
+// 템플릿 특수화(구체화?).
+
 
 // 키-값을 쌍으로 저장할 때 사용할 자료형.
 template<typename KeyType, typename ValueType>
@@ -18,7 +20,7 @@ public:
 	{
 	}
 
-	Pair(KeyType key, ValueType value)
+	Pair(const KeyType& key, const ValueType& value)
 		: key(key), value(value)
 	{
 	}

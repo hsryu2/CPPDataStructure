@@ -82,6 +82,7 @@
     <ClInclude Include="Container\Pair.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Container\HashTable.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
