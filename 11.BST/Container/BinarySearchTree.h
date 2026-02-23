@@ -50,8 +50,13 @@ public:
 	}
 
 
-
 	// 삭제.
+	bool DeleteNode(const T& deleteData)
+	{
+		// 재귀 삭제 함수 호출.
+		return DeleteNodeRecursive(root, deleteData, root);
+		
+	}
 
 	// 검색.
 	bool SearchNode(const T& newData, Node<T>*& outNode)
@@ -139,6 +144,122 @@ private:
 
 	}
 
+	// 삭제 재귀 함수.
+	bool DeleteNodeRecursive(
+		Node<T>* node,
+		const T& deleteData,
+		Node<T>*& outNode)
+	{
+		// 노드가 null인 경우는 삭제할 노드를 찾지 못한 경우.
+		// 삭제 실패.
+		if (!node)
+		{
+			outNode = nullptr;
+			return false;
+		}
+
+		// 비교 값이 작은 경우 왼쪽으로.
+		if (node->data > deleteData)
+		{
+			// 주소값과 2차포인터가 넘어가는것
+			return DeleteNodeRecursive(
+				node->left, deleteData, node->left);
+		}
+		// 비교 값이 큰 경우 오른쪽으로.
+		else if (node->data < deleteData)
+		{
+			return DeleteNodeRecursive(
+				node->right, deleteData, node->right);
+		}
+		// 삭제 노드 찾은 경우 처리.
+		else
+		{
+			// 경우의 수 1 - 자식이 없는 경우 (left, right 모두 null).
+			if (!node->left && !node->right)
+			{
+				delete node;
+				outNode = nullptr; // 하위 자손 정보를 넘겨주는데 없으니까 null
+				return true;
+			}
+
+			// 경우의 수 2 - 자식 노드 둘 다 있는 경우.
+			if (node->left && node->right)
+			{
+				// 왼쪽 하위 트리에서 가장 큰 것 or 
+				// 오른쪽 하위 트리 중에서 가장 작은 것
+				// 부모 노드 대체.
+				// 오른쪽 하위 노드에서 최소값 찾는 함수 호출.
+				// 대체가 노드 삭제가 아니라 데이터값만 바꾸면 똑같음.
+				node->data = SearchMinValue(node->right)->data;
+
+				// 오른쪽 하위 트리에서 가장 작은 값의 노드를 삭제
+				// 및 정리.
+				DeleteNodeRecursive(node->right, node->data, node->right);
+				
+				return true;
+			}
+
+
+			// 경우의 수 3 - 둘 중 하나만 있는 경우.
+			else
+			{
+				// 왼쪽 자손이 null -> 오른쪽 자손만 있는 경우.
+				if (!node->left)
+				{
+					// 오른쪽 자손 정보를 임시 저장.
+					Node<T>* right = node->right;
+
+					// 오른쪽 자손의 부모를 삭제할 노드의 부모로 설정.
+					right->parent = node->parent;
+
+					// 노드 제거
+					delete node;
+					
+					// 오른쪽 자손 정보 설정.
+					outNode = right;
+
+					return true;
+
+				}
+
+				else if (!node->right)
+				{
+					// 오른쪽 자손 정보를 임시 저장.
+					Node<T>* left = node->left;
+
+					// 오른쪽 자손의 부모를 삭제할 노드의 부모로 설정.
+					left->parent = node->parent;
+
+					// 노드 제거
+					delete node;
+
+					// 오른쪽 자손 정보 설정.
+					outNode = left;
+					return true;
+				}
+			}
+		}
+
+		// 오류
+		outNode = nullptr;
+		return false;
+	}
+
+
+	// 최소값 검색 함수.
+	// node: 검색을 시작하는 노드.
+	Node<T>* SearchMinValue(Node<T>* node)
+	{
+		// 검색 시작
+		while (node->left)
+		{
+			// 왼쪽 하위 노드로 이동.
+			node = node->left;
+		}
+
+		//  최소 값을 가진 노드 반환.
+		return node;
+	}
 	// 파괴 함수.
 
 private:
