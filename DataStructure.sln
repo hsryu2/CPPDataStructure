@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36908.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1.Array", "1.Array\1.Array.vcxproj", "{EA0FC48E-3AA8-4176-93EB-75C44E09A469}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1.Array", "1.Array\1.Array.vcxproj", "{C5433425-A63C-4181-9AF8-B5F581FA2742}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2.List", "2.List\2.List.vcxproj", "{F369152A-B535-4975-9CCD-FC9C15A390DA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2.List", "2.List\2.List.vcxproj", "{7DA38423-354D-4E03-A6D6-374D918967F5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.LinkedList", "3.LinkedList\3.LinkedList.vcxproj", "{12E0A19E-32A8-4B11-B730-8E379984581B}"
 EndProject
@@ -31,14 +31,14 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA0FC48E-3AA8-4176-93EB-75C44E09A469}.Debug|x64.ActiveCfg = Debug|x64
-		{EA0FC48E-3AA8-4176-93EB-75C44E09A469}.Debug|x64.Build.0 = Debug|x64
-		{EA0FC48E-3AA8-4176-93EB-75C44E09A469}.Release|x64.ActiveCfg = Release|x64
-		{EA0FC48E-3AA8-4176-93EB-75C44E09A469}.Release|x64.Build.0 = Release|x64
-		{F369152A-B535-4975-9CCD-FC9C15A390DA}.Debug|x64.ActiveCfg = Debug|x64
-		{F369152A-B535-4975-9CCD-FC9C15A390DA}.Debug|x64.Build.0 = Debug|x64
-		{F369152A-B535-4975-9CCD-FC9C15A390DA}.Release|x64.ActiveCfg = Release|x64
-		{F369152A-B535-4975-9CCD-FC9C15A390DA}.Release|x64.Build.0 = Release|x64
+		{C5433425-A63C-4181-9AF8-B5F581FA2742}.Debug|x64.ActiveCfg = Debug|x64
+		{C5433425-A63C-4181-9AF8-B5F581FA2742}.Debug|x64.Build.0 = Debug|x64
+		{C5433425-A63C-4181-9AF8-B5F581FA2742}.Release|x64.ActiveCfg = Release|x64
+		{C5433425-A63C-4181-9AF8-B5F581FA2742}.Release|x64.Build.0 = Release|x64
+		{7DA38423-354D-4E03-A6D6-374D918967F5}.Debug|x64.ActiveCfg = Debug|x64
+		{7DA38423-354D-4E03-A6D6-374D918967F5}.Debug|x64.Build.0 = Debug|x64
+		{7DA38423-354D-4E03-A6D6-374D918967F5}.Release|x64.ActiveCfg = Release|x64
+		{7DA38423-354D-4E03-A6D6-374D918967F5}.Release|x64.Build.0 = Release|x64
 		{12E0A19E-32A8-4B11-B730-8E379984581B}.Debug|x64.ActiveCfg = Debug|x64
 		{12E0A19E-32A8-4B11-B730-8E379984581B}.Debug|x64.Build.0 = Debug|x64
 		{12E0A19E-32A8-4B11-B730-8E379984581B}.Release|x64.ActiveCfg = Release|x64
