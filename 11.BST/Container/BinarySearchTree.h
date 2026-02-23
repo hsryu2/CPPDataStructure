@@ -13,7 +13,7 @@ public:
 	~BinarySearchTree()
 	{
 		//트리 제거 함수 구현 후 호출.
-		//Destroy();
+		Destroy();
 	}
 
 	// 삽입.
@@ -65,6 +65,33 @@ public:
 	}
 
 	// 순회.
+		// 전위 순회
+	void PreorederTraverse(int depth = 0)
+	{
+		std::cout << "====== 전위 순회 시작 ======\n";
+
+		PreorederTraverseRecursive(root, depth);
+
+		std::cout << "========= 전위 순회 종료 ========\n";
+	}
+
+	void InorederTraverse(int depth = 0)
+	{
+		std::cout << "====== 중위 순회 시작 ======\n";
+
+		InorederTraverseRecursive(root, depth);
+
+		std::cout << "========= 중위 순회 종료 ========\n";
+	}
+
+	void PostorederTraverse(int depth = 0)
+	{
+		std::cout << "====== 후위 순회 시작 ======\n";
+
+		PostorederTraverseRecursive(root, depth);
+
+		std::cout << "========= 후위 순회 종료 ========\n";
+	}
 
 private:
 	// 재귀 함수.
@@ -297,6 +324,88 @@ private:
 		// 노드 정리.
 		delete node;
 	}
+
+	// 순회.
+
+
+	// 전위 순회 재귀 함수.
+	void PreorederTraverseRecursive(Node<T>* node, int depth)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 뎁스 출력.
+		for (int i = 0; i < depth; i++)
+		{
+			std::cout << " ";
+		}
+
+		// 부모 노드 처리.
+		std::cout << node->data << "\n";
+
+		// 왼쪽 하위 트리 처리.
+		PreorederTraverseRecursive(node->left, depth + 1);
+		
+
+		// 오른쪽 하위 트리 처리.
+		PreorederTraverseRecursive(node->right, depth + 1);
+
+	}
+
+	// 중위 순회 재귀 함수.
+	void InorederTraverseRecursive(Node<T>* node, int depth)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 왼쪽 하위 트리 처리.
+		InorederTraverseRecursive(node->left, depth + 1);
+
+		// 뎁스 출력.
+		for (int i = 0; i < depth; i++)
+		{
+			std::cout << " ";
+		}
+		// 부모 노드 처리.
+		std::cout << node->data << "\n";
+
+		// 오른쪽 하위 트리 처리.
+		InorederTraverseRecursive(node->right, depth + 1);
+
+	}
+
+	// 후위 순회 재귀 함수.
+	void PostorederTraverseRecursive(Node<T>* node, int depth)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 왼쪽 하위 트리 처리.
+		PostorederTraverseRecursive(node->left, depth + 1);
+
+		// 오른쪽 하위 트리 처리.
+		PostorederTraverseRecursive(node->right, depth + 1);
+
+		// 뎁스 출력.
+		for (int i = 0; i < depth; i++)
+		{
+			std::cout << " ";
+		}
+
+		// 부모 노드 처리.
+		std::cout << node->data << "\n";
+
+	}
+
 private:
 	// 루트 노드.
 	Node<T>* root = nullptr;
