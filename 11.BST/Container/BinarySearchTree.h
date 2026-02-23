@@ -12,7 +12,8 @@ public:
 
 	~BinarySearchTree()
 	{
-		// Todo: 트리 제거 함수 구현 후 호출.
+		//트리 제거 함수 구현 후 호출.
+		//Destroy();
 	}
 
 	// 삽입.
@@ -25,15 +26,12 @@ public:
 	bool InsertNode(const T& newData)
 	{
 		// 중복 여부 확인.
-		// 	// 중복 여부 확인.
 		Node<T>* outNode = nullptr;
 		if (SearchNode(newData, outNode))
 		{
 			//
 			return false;
 		}
-		// Todo: 검색 함수 구현 후 호출.
-
 
 		// 루트가 없으면 루트 노드 생성.
 		if (!root)
@@ -260,8 +258,45 @@ private:
 		//  최소 값을 가진 노드 반환.
 		return node;
 	}
-	// 파괴 함수.
+	// 파괴  함수.
+	void Destroy()
+	{	
+		// 빈 트리(root가 null)인 경우에는 함수 종료.
+		if (!root)
+		{
+			return;
+		}
 
+		// 루트 노드부터 제거.
+		DestroyRecursive(root);
+	}
+
+	// 파괴 재귀 함수.
+	void DestroyRecursive(Node<T>* node)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 자손이 없는 경우 처리.
+		// 딱히 없어도 되는 부분임
+		if (!node->left && !node->right)
+		{
+			delete node;
+			return;
+		}
+
+		// 왼쪽 하위 트리 삭제.
+		DestroyRecursive(node->left);
+
+		// 오른쪽 하위 트리 삭제.
+		DestroyRecursive(node->right);
+
+		// 노드 정리.
+		delete node;
+	}
 private:
 	// 루트 노드.
 	Node<T>* root = nullptr;

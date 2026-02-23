@@ -8,7 +8,6 @@ class List
 public:
 	List()
 	{
-		// Todo: 저장 공간 할당 해야함.
 		data = new T[capacity];
 		memset(data, 0, sizeof(T) * capacity);
 		//Reallocate(capacity);

@@ -3,6 +3,9 @@
 
 int main()
 {
+
+
+
 	// 정수형 이진 탐색 트리 객체 생성.
 	BinarySearchTree<int> tree;
 
