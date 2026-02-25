@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d57e9ea9-8b83-4b7a-9f73-1693fec6a29d}</ProjectGuid>
-    <RootNamespace>My11BST</RootNamespace>
+    <ProjectGuid>{51abdd6a-0f57-49aa-af42-4b13ab21ea1a}</ProjectGuid>
+    <RootNamespace>My6StackMaze</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,11 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClInclude Include="Container\Stack.h" />
+    <ClInclude Include="Location2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Container\BinarySearchTree.h" />
-    <ClInclude Include="Container\Node.h" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

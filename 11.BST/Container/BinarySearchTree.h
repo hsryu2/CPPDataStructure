@@ -2,6 +2,15 @@
 
 #include "Node.h"
 
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+// Replace _NORMAL_BLOCK with _CLIENT_BLOCK if you want the
+// allocations to be of _CLIENT_BLOCK type
+#else
+#define new new
+#endif
+
+// 이진 탐색 트리 클래스.
 template<typename T>
 class BinarySearchTree
 {
@@ -12,12 +21,12 @@ public:
 
 	~BinarySearchTree()
 	{
-		//트리 제거 함수 구현 후 호출.
+		// 트리 제거 함수 호출.
 		Destroy();
 	}
 
 	// 삽입.
-	// 규칙
+	// 규칙.
 	// 0. 중복된 값 허용 안함.
 	// 1. 루트 노드부터 비교 시작.
 	// 1-1. 루트가 null이면 루트 생성.
@@ -29,7 +38,7 @@ public:
 		Node<T>* outNode = nullptr;
 		if (SearchNode(newData, outNode))
 		{
-			//
+			// 중복된 값이 있으면 삽입 실패.
 			return false;
 		}
 
@@ -42,59 +51,131 @@ public:
 
 		// 2/3을 처리하기 위해 재귀 함수 호출.
 		root = InsertNodeRecursive(root, nullptr, newData);
-		
 		return true;
-
 	}
-
 
 	// 삭제.
 	bool DeleteNode(const T& deleteData)
 	{
-		// 재귀 삭제 함수 호출.
+		// 재귀 삭제 함수 구현 후 호출.
 		return DeleteNodeRecursive(root, deleteData, root);
-		
 	}
 
 	// 검색.
-	bool SearchNode(const T& newData, Node<T>*& outNode)
+	bool SearchNode(const T& data, Node<T>*& outNode)
 	{
 		// 검색 재귀함수 구현 후 호출.
-		return SearchNodeRecursive(root, newData, outNode);
-
+		return SearchNodeRecursive(root, data, outNode);
 	}
 
 	// 순회.
-		// 전위 순회
-	void PreorederTraverse(int depth = 0)
+	// 전위 순회.
+	void PreorderTraverse(int depth = 0)
 	{
-		std::cout << "====== 전위 순회 시작 ======\n";
+		std::cout << "========= 전위 순회 시작 =========\n";
 
-		PreorederTraverseRecursive(root, depth);
+		// 순회 재귀 함수 호출.
+		PreorderTraverseRecursive(root, depth);
 
-		std::cout << "========= 전위 순회 종료 ========\n";
+		std::cout << "========= 전위 순회 종료 =========\n";
 	}
 
-	void InorederTraverse(int depth = 0)
+	void InorderTraverse(int depth = 0)
 	{
-		std::cout << "====== 중위 순회 시작 ======\n";
+		std::cout << "========= 중위 순회 시작 =========\n";
 
-		InorederTraverseRecursive(root, depth);
+		// 순회 재귀 함수 호출.
+		InorderTraverseRecursive(root, depth);
 
-		std::cout << "========= 중위 순회 종료 ========\n";
+		std::cout << "========= 중위 순회 종료 =========\n";
 	}
 
-	void PostorederTraverse(int depth = 0)
+	void PostorderTraverse(int depth = 0)
 	{
-		std::cout << "====== 후위 순회 시작 ======\n";
+		std::cout << "========= 후위 순회 시작 =========\n";
 
-		PostorederTraverseRecursive(root, depth);
+		// 순회 재귀 함수 호출.
+		PostorderTraverseRecursive(root, depth);
 
-		std::cout << "========= 후위 순회 종료 ========\n";
+		std::cout << "========= 후위 순회 종료 =========\n";
 	}
 
 private:
 	// 재귀 함수.
+
+	// 전위 순회 재귀 함수.
+	void PreorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 뎁스 출력.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << "  ";
+		}
+
+		// 부모 노드 처리. node == node->parent->left ? "L: "..
+		std::cout << node->data << "\n";
+
+		// 왼쪽 하위 트리 처리.
+		PreorderTraverseRecursive(node->left, depth + 1);
+
+		// 오른쪽 하위 트리 처리.
+		PreorderTraverseRecursive(node->right, depth + 1);
+	}
+
+	void InorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 왼쪽 하위 트리 처리.
+		InorderTraverseRecursive(node->left, depth + 1);
+
+		// 뎁스 출력.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << "  ";
+		}
+
+		// 부모 노드 처리. node == node->parent->left ? "L: "..
+		std::cout << node->data << "\n";
+
+		// 오른쪽 하위 트리 처리.
+		InorderTraverseRecursive(node->right, depth + 1);
+	}
+
+	void PostorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		// 왼쪽 하위 트리 처리.
+		PostorderTraverseRecursive(node->left, depth + 1);
+
+		// 오른쪽 하위 트리 처리.
+		PostorderTraverseRecursive(node->right, depth + 1);
+
+		// 뎁스 출력.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << "  ";
+		}
+
+		// 부모 노드 처리. node == node->parent->left ? "L: "..
+		std::cout << node->data << "\n";
+	}
+
 
 	// 삽입 재귀 함수.
 	Node<T>* InsertNodeRecursive(
@@ -116,28 +197,26 @@ private:
 				node->left, node, newData
 			);
 		}
-
 		// 추가하려는 값이 비교 노드 보다 크면
 		// 오른쪽 하위 트리로 탐색 진행.
-		// 미리 중복 여부를 확인 했기 때문에 큰 경우만 남게된다.
 		else
 		{
 			node->right = InsertNodeRecursive(
 				node->right, node, newData
 			);
-	
 		}
 
 		// 트리 구조 유지를 위해 반환.
 		return node;
 	}
 
+	// 검색 재귀 함수.
 	bool SearchNodeRecursive(
 		Node<T>* node,
 		const T& data,
 		Node<T>*& outNode)
 	{
-		// 검색 실패
+		// 검색 실패.
 		if (!node)
 		{
 			outNode = nullptr;
@@ -158,7 +237,6 @@ private:
 				node->left, data, outNode
 			);
 		}
-
 		// 큰 경우 오른쪽으로.
 		else
 		{
@@ -166,7 +244,6 @@ private:
 				node->right, data, outNode
 			);
 		}
-
 	}
 
 	// 삭제 재귀 함수.
@@ -186,46 +263,50 @@ private:
 		// 비교 값이 작은 경우 왼쪽으로.
 		if (node->data > deleteData)
 		{
-			// 주소값과 2차포인터가 넘어가는것
 			return DeleteNodeRecursive(
-				node->left, deleteData, node->left);
+				node->left, deleteData, node->left
+			);
 		}
+
 		// 비교 값이 큰 경우 오른쪽으로.
 		else if (node->data < deleteData)
 		{
 			return DeleteNodeRecursive(
-				node->right, deleteData, node->right);
+				node->right, deleteData, node->right
+			);
 		}
+
 		// 삭제 노드 찾은 경우 처리.
 		else
 		{
-			// 경우의 수 1 - 자식이 없는 경우 (left, right 모두 null).
+			// 경우의 수1 - 자식이 없는 경우.
+			// (left,right 모두 null)
 			if (!node->left && !node->right)
 			{
 				delete node;
-				outNode = nullptr; // 하위 자손 정보를 넘겨주는데 없으니까 null
+				outNode = nullptr;
 				return true;
 			}
 
-			// 경우의 수 2 - 자식 노드 둘 다 있는 경우.
+			// 경우의 수2 - 자식 노드 둘 다 있는 경우.
 			if (node->left && node->right)
 			{
-				// 왼쪽 하위 트리에서 가장 큰 것 or 
-				// 오른쪽 하위 트리 중에서 가장 작은 것
-				// 부모 노드 대체.
-				// 오른쪽 하위 노드에서 최소값 찾는 함수 호출.
-				// 대체가 노드 삭제가 아니라 데이터값만 바꾸면 똑같음.
+				// 여기에서는 2가지 방법이 가능.
+				// 1. 왼쪽 하위 트리에서 가장 큰 값의 노드를 대체.
+				// 2. 오른쪽 하위 트리에서 가장 작은 값의 노드를 대체.
+				// 하위 노드에서 최소값 찾는 함수 호출.
 				node->data = SearchMinValue(node->right)->data;
 
 				// 오른쪽 하위 트리에서 가장 작은 값의 노드를 삭제
 				// 및 정리.
-				DeleteNodeRecursive(node->right, node->data, node->right);
-				
+				DeleteNodeRecursive(
+					node->right, node->data, node->right
+				);
+
 				return true;
 			}
 
-
-			// 경우의 수 3 - 둘 중 하나만 있는 경우.
+			// 경우의 수3 - 둘 중에 하나만 있는 경우.
 			else
 			{
 				// 왼쪽 자손이 null -> 오른쪽 자손만 있는 경우.
@@ -237,57 +318,55 @@ private:
 					// 오른쪽 자손의 부모를 삭제할 노드의 부모로 설정.
 					right->parent = node->parent;
 
-					// 노드 제거
+					// 노드 제거.
 					delete node;
-					
+
 					// 오른쪽 자손 정보 설정.
 					outNode = right;
-
 					return true;
-
 				}
-
+				// 왼쪽 자손이 있는 경우.
 				else if (!node->right)
 				{
-					// 오른쪽 자손 정보를 임시 저장.
+					// 왼쪽 자손 정보를 임시 저장.
 					Node<T>* left = node->left;
 
-					// 오른쪽 자손의 부모를 삭제할 노드의 부모로 설정.
+					// 왼쪽 자손의 부모를 삭제할 노드의 부모로 설정.
 					left->parent = node->parent;
 
-					// 노드 제거
+					// 노드 제거.
 					delete node;
 
-					// 오른쪽 자손 정보 설정.
+					// 왼쪽 자손 정보 설정.
 					outNode = left;
 					return true;
 				}
 			}
 		}
 
-		// 오류
+		// 오류.
 		outNode = nullptr;
 		return false;
 	}
-
 
 	// 최소값 검색 함수.
 	// node: 검색을 시작하는 노드.
 	Node<T>* SearchMinValue(Node<T>* node)
 	{
-		// 검색 시작
+		// 검색 시작.
 		while (node->left)
 		{
 			// 왼쪽 하위 노드로 이동.
 			node = node->left;
 		}
 
-		//  최소 값을 가진 노드 반환.
+		// 최소 값을 가진 노드 반환.
 		return node;
 	}
-	// 파괴  함수.
+
+	// 파괴 함수.
 	void Destroy()
-	{	
+	{
 		// 빈 트리(root가 null)인 경우에는 함수 종료.
 		if (!root)
 		{
@@ -308,7 +387,6 @@ private:
 		}
 
 		// 자손이 없는 경우 처리.
-		// 딱히 없어도 되는 부분임
 		if (!node->left && !node->right)
 		{
 			delete node;
@@ -325,89 +403,7 @@ private:
 		delete node;
 	}
 
-	// 순회.
-
-
-	// 전위 순회 재귀 함수.
-	void PreorederTraverseRecursive(Node<T>* node, int depth)
-	{
-		// 종료 조건.
-		if (!node)
-		{
-			return;
-		}
-
-		// 뎁스 출력.
-		for (int i = 0; i < depth; i++)
-		{
-			std::cout << " ";
-		}
-
-		// 부모 노드 처리.
-		std::cout << node->data << "\n";
-
-		// 왼쪽 하위 트리 처리.
-		PreorederTraverseRecursive(node->left, depth + 1);
-		
-
-		// 오른쪽 하위 트리 처리.
-		PreorederTraverseRecursive(node->right, depth + 1);
-
-	}
-
-	// 중위 순회 재귀 함수.
-	void InorederTraverseRecursive(Node<T>* node, int depth)
-	{
-		// 종료 조건.
-		if (!node)
-		{
-			return;
-		}
-
-		// 왼쪽 하위 트리 처리.
-		InorederTraverseRecursive(node->left, depth + 1);
-
-		// 뎁스 출력.
-		for (int i = 0; i < depth; i++)
-		{
-			std::cout << " ";
-		}
-		// 부모 노드 처리.
-		std::cout << node->data << "\n";
-
-		// 오른쪽 하위 트리 처리.
-		InorederTraverseRecursive(node->right, depth + 1);
-
-	}
-
-	// 후위 순회 재귀 함수.
-	void PostorederTraverseRecursive(Node<T>* node, int depth)
-	{
-		// 종료 조건.
-		if (!node)
-		{
-			return;
-		}
-
-		// 왼쪽 하위 트리 처리.
-		PostorederTraverseRecursive(node->left, depth + 1);
-
-		// 오른쪽 하위 트리 처리.
-		PostorederTraverseRecursive(node->right, depth + 1);
-
-		// 뎁스 출력.
-		for (int i = 0; i < depth; i++)
-		{
-			std::cout << " ";
-		}
-
-		// 부모 노드 처리.
-		std::cout << node->data << "\n";
-
-	}
-
 private:
 	// 루트 노드.
 	Node<T>* root = nullptr;
-
 };

@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7da38423-354d-4e03-a6d6-374d918967f5}</ProjectGuid>
+    <ProjectGuid>{f369152a-b535-4975-9ccd-fc9c15a390da}</ProjectGuid>
     <RootNamespace>My2List</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

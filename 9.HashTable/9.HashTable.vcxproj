@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d57e9ea9-8b83-4b7a-9f73-1693fec6a29d}</ProjectGuid>
-    <RootNamespace>My11BST</RootNamespace>
+    <ProjectGuid>{c6cf7cf7-9950-40e1-98d9-ac122117242e}</ProjectGuid>
+    <RootNamespace>My9HashTable</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,11 +78,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Container\HashTable.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Container\BinarySearchTree.h" />
-    <ClInclude Include="Container\Node.h" />
+    <ClInclude Include="Container\HashTable.h" />
+    <ClInclude Include="Container\Pair.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

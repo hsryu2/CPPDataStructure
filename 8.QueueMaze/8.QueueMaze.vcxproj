@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d57e9ea9-8b83-4b7a-9f73-1693fec6a29d}</ProjectGuid>
-    <RootNamespace>My11BST</RootNamespace>
+    <ProjectGuid>{342fd02f-83a5-45ca-8614-307fddbc0639}</ProjectGuid>
+    <RootNamespace>My8QueueMaze</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,8 +81,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Container\BinarySearchTree.h" />
-    <ClInclude Include="Container\Node.h" />
+    <ClInclude Include="Container\Queue.h" />
+    <ClInclude Include="Location2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
